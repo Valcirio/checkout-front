@@ -1,0 +1,14 @@
+module.exports = {
+	singleQuote: true,
+	semi: false,
+	tabWidth: 2,
+	bracketSpacing: true,
+	useTabs: true,
+	objectWrap: 'collapse',
+	trailingComma: 'es5',
+	bracketSameLine: false,
+	experimentalOperatorPosition: 'end',
+	printWidth: 100,
+	plugins: ['prettier-plugin-tailwindcss'],
+	tailwindFunctions: ['clsx', 'tw', 'cn', 'cva'],
+}
