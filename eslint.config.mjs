@@ -13,6 +13,7 @@ const eslintConfig = [
 		rules: {
 			'no-unused-vars': 'off',
 			'no-console': 'warn',
+			'@next/next/no-img-element': 'off',
 			'@typescript-eslint/no-unused-vars': 'warn',
 			'@typescript-eslint/strict-boolean-expressions': 'off',
 			'react/react-in-jsx-scope': 'off',

@@ -14,16 +14,20 @@ export const metadata: Metadata = {
 import { Toaster } from '@/components/ui/sonner'
 import { ThemeProvider } from '@/providers/theme'
 import AuthProvider from '@/context/AuthContext'
+import { Footer } from '@/components/footer'
+import { Header } from '@/components/header'
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
 	return (
 		<html lang="pt-BR" suppressHydrationWarning>
-			<body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+			<body className={`${geistSans.variable} ${geistMono.variable} scroll-smooth antialiased`}>
 				<ThemeProvider>
 					<AuthProvider>
 						<>
 							<Toaster />
+							<Header />
 							{children}
+							<Footer />
 						</>
 					</AuthProvider>
 				</ThemeProvider>

@@ -27,7 +27,7 @@ export default function AuthProvider({ children }: { children: React.ReactElemen
 	async function SignIn({ email, password }: TLoginAdmin) {
 		try {
 			const response: TLoginResponse = await instance.post(
-				'/auth/singup',
+				'/auth/login',
 				{ email, password },
 				{ headers: { 'Content-Type': 'application/json' } }
 			)

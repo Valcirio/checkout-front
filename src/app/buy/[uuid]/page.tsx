@@ -4,9 +4,10 @@ import instance from '@/services/axios'
 import { TListProduct } from '@/validators/product'
 import axios from 'axios'
 
-export default async function ProductPage({ params }: { params: { uuid: string } }) {
+export default async function ProductPage({ params }: { params: Promise<{ uuid: string }> }) {
+	const { uuid } = await params
 	try {
-		const secretClient = await instance.get(`/order/${params.uuid}`)
+		const secretClient = await instance.get(`/order/${uuid}`)
 		return (
 			<section>
 				<StripeProvider secret={secretClient.data.secret as string}>
