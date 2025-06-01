@@ -1,6 +1,5 @@
 'use client'
 
-import { Button } from '@/components/ui/button'
 import { useEffect } from 'react'
 
 export default function Error({
@@ -17,7 +16,7 @@ export default function Error({
 				<div className="text-center">
 					<p className="text-base font-semibold text-primary">{error.cause as number}</p>
 					<h1 className="mt-4 text-balance text-5xl font-semibold tracking-tight text-primary sm:text-7xl">
-						Página não Encontrada
+						Produto não Encontrado
 					</h1>
 					<p className="mt-6 text-pretty text-lg font-medium text-foreground sm:text-xl/8">
 						Desculpe, tente novamente mais tarde.

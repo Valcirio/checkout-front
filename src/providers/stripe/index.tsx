@@ -3,7 +3,7 @@ import { Elements } from '@stripe/react-stripe-js'
 import { loadStripe, StripeElementsOptions } from '@stripe/stripe-js'
 import { useTheme } from 'next-themes'
 
-type TCheckoutProvider = { secret: string; children: React.ReactElement }
+type TCheckoutProvider = { secret: string | undefined; children: React.ReactElement }
 
 export default function StripeProvider({ secret, children }: TCheckoutProvider) {
 	const { theme } = useTheme()

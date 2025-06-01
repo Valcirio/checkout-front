@@ -43,7 +43,7 @@ export default function LoginPage() {
 					router.push('/admin')
 				}, 2000)
 			}
-		} catch (error: unknown) {
+		} catch {
 			toast.error('Nome ou Senha do usuário inválido.')
 		}
 	}

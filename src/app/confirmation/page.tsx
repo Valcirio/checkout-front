@@ -4,8 +4,9 @@ import { useSearchParams, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
-import { CheckCircle2, XCircle, AlertTriangle, Loader2 } from 'lucide-react'
+import { CheckCircle2, XCircle, AlertTriangle } from 'lucide-react'
 import Link from 'next/link'
+import { Loading } from '@/components/loading'
 
 export default function ConfirmationPage() {
 	const router = useRouter()
@@ -15,14 +16,10 @@ export default function ConfirmationPage() {
 
 	useEffect(() => {
 		const redirectStatus = searchParams.get('redirect_status')
-		// Simular um pequeno atraso para permitir que o Stripe processe e atualize o status do PaymentIntent,
-		// especialmente se o usuário for redirecionado muito rapidamente.
-		// Em um cenário real, você pode querer buscar o status do pagamento do seu backend aqui
-		// usando o payment_intent_client_secret se disponível na URL.
 		setTimeout(() => {
 			setStatus(redirectStatus)
 			setIsLoading(false)
-		}, 1500) // Atraso de 1.5 segundos como exemplo
+		}, 1500)
 	}, [searchParams])
 
 	const statusMessages = {
@@ -49,22 +46,11 @@ export default function ConfirmationPage() {
 			), // Supondo que /checkout seja a sua página de pagamento
 		},
 		requires_action: {
-			icon: <AlertTriangle className="h-16 w-16 text-yellow-500" />,
+			icon: <AlertTriangle className="h-16 w-16 text-chart-4" />,
 			title: 'Ação Necessária',
 			description:
 				'Seu pagamento requer uma etapa adicional de autenticação. Por favor, siga as instruções do seu banco para concluir a transação.',
 			cta: <Button onClick={() => router.back()}>Verificar Autenticação</Button>,
-		},
-		pending: {
-			icon: <AlertTriangle className="h-16 w-16 text-yellow-500" />,
-			title: 'Pagamento Pendente',
-			description:
-				'Seu pagamento está pendente de confirmação pelo banco. Aguarde alguns instantes. Você será notificado assim que o status for atualizado.',
-			cta: (
-				<Button asChild>
-					<Link href="/">Voltar à Loja</Link>
-				</Button>
-			),
 		},
 		default: {
 			icon: <AlertTriangle className="h-16 w-16 text-muted-foreground" />,
@@ -86,8 +72,8 @@ export default function ConfirmationPage() {
 
 	if (isLoading) {
 		return (
-			<div className="flex min-h-screen flex-col items-center justify-center bg-background p-4 text-foreground">
-				<Loader2 className="mb-4 h-12 w-12 animate-spin text-primary" />
+			<div className="flex min-h-screen flex-col items-center justify-center gap-4 bg-background p-4 text-foreground">
+				<Loading size="lg" />
 				<p className="text-lg text-muted-foreground">Verificando status do pagamento...</p>
 			</div>
 		)

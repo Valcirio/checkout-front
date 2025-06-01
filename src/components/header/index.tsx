@@ -2,9 +2,8 @@
 import { ShoppingCart } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { LandingLinks } from './components/landingLinks'
 import { ThemeSwitcher } from '../themeSwitcher'
-import { AdminLinks } from './components/adminLinks'
+import * as Links from './components/links'
 
 export const Header = () => {
 	const params = usePathname()
@@ -16,8 +15,8 @@ export const Header = () => {
 					<span className="text-lg font-bold sm:inline-block">MeuEcommerce</span>
 				</Link>
 				<nav className="ml-auto flex items-center gap-4 text-sm lg:gap-6">
-					{params === '/' ? <LandingLinks /> : null}
-					{params.startsWith('/admin') ? <AdminLinks /> : null}
+					{params === '/' ? <Links.Landing /> : null}
+					{params.startsWith('/admin') ? <Links.Admin /> : null}
 					<ThemeSwitcher />
 				</nav>
 			</div>
