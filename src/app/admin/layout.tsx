@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
 	return (
-		<section className="flex h-screen w-screen flex-col items-center justify-center overflow-hidden">
+		<section className="flex min-h-screen w-full flex-col items-center justify-start">
 			{children}
 		</section>
 	)

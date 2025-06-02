@@ -15,7 +15,7 @@ export function AlterForm({ product }: { product: TListProduct }) {
 					<Form.Payment product={product} />
 				</StripeProvider>
 			) : (
-				<Form.Client id={product.id} />
+				<Form.Client id={product.id} value={product.price} />
 			)}
 		</section>
 	)

@@ -9,6 +9,10 @@ export const ZRegisterClient = z.object({
 		.string()
 		.nonempty('Campo do CNPJ é obrigatório.')
 		.refine((el) => cpf.isValid(el), { message: 'CPF Inválido.' }),
+	quantity: z
+		.number()
+		.min(1, 'Quantidade mínima de 1 produto.')
+		.max(5, 'Quantidade máxima de 5 produtos.'),
 })
 
 export type TRegisterClient = z.infer<typeof ZRegisterClient>

@@ -24,6 +24,8 @@
     --primary-foreground: 355.7 100% 97.3%;
     --secondary: 240 4.8% 95.9%;
     --secondary-foreground: 240 5.9% 10%;
+    --tertiary: 215.4 16.3% 46.9%;
+    --tertiary-foreground: 0 0% 100%;
     --muted: 240 4.8% 95.9%;
     --muted-foreground: 240 3.8% 46.1%;
     --accent: 240 4.8% 95.9%;
@@ -52,6 +54,8 @@
     --primary-foreground: 144.9 80.4% 10%;
     --secondary: 240 5.3% 26.1%;
     --secondary-foreground: 0 0% 98%;
+    --tertiary: 215 20.2% 65.1%;
+    --tertiary-foreground: 0 0% 90%;
     --muted: 0 0% 15%;
     --muted-foreground: 240 5% 64.9%;
     --accent: 12 6.5% 15.1%;
@@ -66,5 +70,11 @@
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
+  }
+}
+
+@layer components {
+  .input-number {
+    @apply disabled:opacity-50 disabled:cursor-not-allowed;
   }
 }

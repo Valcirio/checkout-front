@@ -1,7 +1,7 @@
 'use client'
 import { useTheme } from 'next-themes'
 import { useEffect, useState } from 'react'
-import { CiDark, CiLight } from 'react-icons/ci'
+import { Moon, Sun } from 'lucide-react'
 
 export function ThemeSwitcher() {
 	const [mounted, setMounted] = useState(false)
@@ -23,7 +23,7 @@ export function ThemeSwitcher() {
 						setTheme('light')
 					}}
 				>
-					<CiDark className="animate-spin-appear h-auto w-6 text-foreground" />
+					<Sun className="animate-spin-appear h-auto w-6 text-foreground" />
 				</button>
 			) : (
 				<button
@@ -31,7 +31,7 @@ export function ThemeSwitcher() {
 						setTheme('dark')
 					}}
 				>
-					<CiLight className="animate-spin-appear h-auto w-6 text-foreground" />
+					<Moon className="animate-spin-appear h-auto w-6 text-foreground" />
 				</button>
 			)}
 		</div>

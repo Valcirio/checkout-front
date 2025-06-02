@@ -26,11 +26,11 @@ export default function BuyProvider({ children }: { children: React.ReactElement
 		}
 	}, [])
 
-	async function CreateOrder({ name, cpf, email, address, productId }: TCreateOrder) {
+	async function CreateOrder({ name, cpf, email, address, quantity, productId }: TCreateOrder) {
 		try {
 			const response: TOrderResponse = await instance.post(
 				'/order',
-				{ name, cpf, email, address, productId },
+				{ name, cpf, email, address, quantity, productId },
 				{ headers: { 'Content-Type': 'application/json' } }
 			)
 

@@ -1,18 +1,40 @@
 import instance from '@/services/axios'
 import TableOrder from './components/table/orders'
-import { TRegisterOrder } from '@/validators/order'
+import { TRequestOrder } from '@/validators/order'
 import getCookieData from '@/services/cookie'
 import axios from 'axios'
+import { ESelect } from '@/types/table'
 
-export default async function AdminPage() {
+export default async function AdminPage({
+	searchParams,
+}: {
+	searchParams: Promise<Record<string, string>>
+}) {
+	const { page, ordination, desc } = await searchParams
 	try {
 		const cookieData = await getCookieData()
-		const { data }: { data: { orders: TRegisterOrder[] } } = await instance.get('/order/admin', {
-			headers: { Authorization: `Bearer ${cookieData}` },
-		})
+		const { data }: { data: { orders: TRequestOrder[]; hasNext: boolean } } = await instance.get(
+			'/order',
+			{
+				params: {
+					page: page ? page : 1,
+					ordination: ordination ? ordination : ESelect.DATE,
+					desc: desc ? desc : false,
+				},
+				headers: { Authorization: `Bearer ${cookieData}` },
+			}
+		)
+		console.log(data)
 		return (
-			<article className="flex h-full w-full max-w-xl flex-col items-center justify-center">
-				<TableOrder data={data.orders} />
+			<article className="flex h-full w-full max-w-3xl flex-col items-center justify-start pt-40">
+				<TableOrder
+					data={data.orders}
+					filters={{
+						page: { number: page ? Number(page) : 1, hasNext: data.hasNext },
+						ordination: ordination ? ordination : ESelect.DATE,
+						desc: desc === 'true' ? true : false,
+					}}
+				/>
 			</article>
 		)
 	} catch (err) {

@@ -8,3 +8,11 @@ export const ZRegisterOrder = z.object({
 })
 
 export type TRegisterOrder = z.infer<typeof ZRegisterOrder>
+
+export type TRequestOrder = {
+	id: string
+	client: { name: string }
+	createdAt: string
+	product: { title: string; price: string }
+	status: string
+}

@@ -1,7 +1,7 @@
 'use client'
 import { MoveRight, MoveLeft } from 'lucide-react'
 
-import { ESelect, type paginationProps } from '@/types/table'
+import { ESelect } from '@/types/table'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 
 import {
@@ -14,16 +14,16 @@ import {
 	SelectValue,
 } from '@/components/ui/select'
 
-export const SelectComponent = ({ hasNext, hasPrev, pageNumber }: paginationProps) => {
+export const SelectComponent = ({ order }: { order: string }) => {
 	const router = useRouter()
 	const pathname = usePathname()
 	const previousParams = useSearchParams()
 
 	function HandleClick(event: string) {
 		const params = new URLSearchParams(previousParams)
+		params.set('ordination', event)
 
-		console.log(event)
-		// router.replace(`${pathname}?${params.toString()}`)
+		router.replace(`${pathname}?${params.toString()}`)
 	}
 
 	return (
@@ -31,7 +31,7 @@ export const SelectComponent = ({ hasNext, hasPrev, pageNumber }: paginationProp
 			onValueChange={(e) => {
 				HandleClick(e)
 			}}
-			defaultValue={ESelect.DATE}
+			defaultValue={order}
 		>
 			<SelectTrigger className="w-full max-w-xs">
 				<SelectValue placeholder="Selecione uma ordenação" />
