@@ -8,7 +8,7 @@ import { useRouter } from 'next/navigation'
 export default function ProductSession({ data }: { data: TListProduct[] }) {
 	const router = useRouter()
 	return (
-		<section className="grid grid-cols-1 gap-6 bg-background p-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+		<section className="grid h-full grid-cols-1 gap-6 bg-background p-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
 			{data.map(({ id, title, description, price, picture }, index) => {
 				return (
 					<Card

@@ -6,7 +6,7 @@ export default async function PageProduct() {
 	try {
 		const result = await instance.get('/product')
 		return (
-			<section className="flex h-screen w-full flex-col items-center justify-center overflow-hidden">
+			<section className="flex min-h-screen w-full flex-col items-center justify-center">
 				<main>
 					<ProductSession data={result.data.products} />
 				</main>
