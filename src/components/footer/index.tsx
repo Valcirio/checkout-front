@@ -1,7 +1,7 @@
 export const Footer = () => {
 	return (
 		<footer className="border-t border-border/40 bg-secondary/30 py-8">
-			<div className="container mx-auto flex flex-col items-center justify-between px-4 md:flex-row md:px-6">
+			<div className="container mx-auto flex flex-col items-center justify-start px-4 md:flex-row md:justify-between md:px-6">
 				<p className="text-sm text-muted-foreground">
 					&copy; {new Date().getFullYear()} MeuEcommerce. Todos os direitos reservados.
 				</p>

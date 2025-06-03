@@ -1,7 +1,7 @@
 'use client'
-import React, { createContext, useState } from 'react'
+import React, { createContext, useEffect, useState } from 'react'
 import { TAdminToken, TLoginAdmin } from '@/validators/admin'
-import { setCookie, deleteCookie } from 'cookies-next'
+import { setCookie, deleteCookie, getCookie } from 'cookies-next/client'
 import instance from '@/services/axios'
 import { STATUS_CODE } from '@/types/httpStatus'
 import { useRouter } from 'next/navigation'
@@ -23,6 +23,14 @@ export default function AuthProvider({ children }: { children: React.ReactElemen
 	const router = useRouter()
 	const [user, setUser] = useState<string | null>(null)
 	const isAuth = !!user
+
+	useEffect(() => {
+		const cookieValue = getCookie('access-token')
+		if (cookieValue) {
+			const decodeJwt: TAdminToken = jwtDecode(cookieValue)
+			setUser(decodeJwt.name)
+		}
+	}, [])
 
 	async function SignIn({ email, password }: TLoginAdmin) {
 		try {

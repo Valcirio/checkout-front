@@ -8,7 +8,8 @@ export const ZRegisterAdmin = z
 		cnpj: z
 			.string()
 			.nonempty('Campo do CNPJ é obrigatório.')
-			.refine((el) => cnpj.isValid(el), { message: 'CNPJ Inválido.' }),
+			.refine((el) => cnpj.isValid(el), { message: 'CNPJ Inválido.' })
+			.refine((val) => val.search('_') === -1, { message: 'CNPJ Inválido.' }),
 		password: z
 			.string({ message: 'Campo senha é obrigatório' })
 			.nonempty('Campo senha é obrigatório.'),

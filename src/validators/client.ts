@@ -7,8 +7,10 @@ export const ZRegisterClient = z.object({
 	address: z.string().nonempty('Endereço é obrigatório.'),
 	cpf: z
 		.string()
-		.nonempty('Campo do CNPJ é obrigatório.')
-		.refine((el) => cpf.isValid(el), { message: 'CPF Inválido.' }),
+		.nonempty('Campo do CPF é obrigatório.')
+		.refine((el) => cpf.isValid(el), { message: 'CPF Inválido.' })
+		.refine((val) => val.search('_') === -1, { message: 'CPF Inválido.' })
+		.transform((val) => val.replaceAll('.', '').replace('-', '')),
 	quantity: z
 		.number()
 		.min(1, 'Quantidade mínima de 1 produto.')

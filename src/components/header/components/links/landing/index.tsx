@@ -1,5 +1,3 @@
-import { Button } from '@/components/ui/button'
-import { ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 
 export const LandingLinks = () => {
@@ -20,11 +18,6 @@ export const LandingLinks = () => {
 			>
 				Seja um Vendedor
 			</Link>
-			<Button asChild size="sm">
-				<Link href="/products">
-					Ver Produtos <ArrowRight className="ml-2 h-4 w-4" />
-				</Link>
-			</Button>
 		</>
 	)
 }

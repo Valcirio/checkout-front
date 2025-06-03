@@ -3,19 +3,16 @@
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 // import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select' // Descomente se tiver
-import { PaymentElement, useElements, useStripe } from '@stripe/react-stripe-js'
-import { useContext, useState } from 'react'
-import { ArrowLeft, Apple, Lock, Router, Plus, Minus } from 'lucide-react' // Exemplo de ícones
-import { TListProduct } from '@/validators/product'
-import { useRouter } from 'next/navigation'
+import { useContext } from 'react'
+import { Plus, Minus } from 'lucide-react' // Exemplo de ícones
 import { TRegisterClient, ZRegisterClient } from '@/validators/client'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Controller, useForm } from 'react-hook-form'
 import { Loading } from '@/components/loading'
 import { toast } from 'sonner'
-import instance from '@/services/axios'
 import { BuyContext } from '@/context/buyContext'
 import { STATUS_CODE } from '@/types/httpStatus'
+import { useHookFormMask } from 'use-mask-input'
 
 export default function ClientForm({ id, value }: { id: string; value: number }) {
 	const { CreateOrder } = useContext(BuyContext)
@@ -30,19 +27,20 @@ export default function ClientForm({ id, value }: { id: string; value: number })
 		mode: 'onSubmit',
 		defaultValues: { name: '', email: '', cpf: '', quantity: 1 },
 	})
+	const registerCPF = useHookFormMask(register)
 
 	const handleClient = async (data: TRegisterClient) => {
 		try {
 			const result = await CreateOrder({ ...data, productId: id })
 			if (result === STATUS_CODE.OK) {
-				toast.success('Login bem-sucedido!')
+				toast.success('Registro feito!')
 			}
-		} catch (error: unknown) {
+		} catch {
 			toast.error('Nome ou Senha do usuário inválido.')
 		}
 	}
 	return (
-		<div className="mx-auto w-full max-w-lg">
+		<section className="mx-auto w-full max-w-lg">
 			<form onSubmit={handleSubmit(handleClient)} noValidate>
 				<div className="space-y-6">
 					<h2 className="mb-3 text-lg font-semibold text-foreground">
@@ -82,7 +80,12 @@ export default function ClientForm({ id, value }: { id: string; value: number })
 							className="flex w-full flex-col items-start justify-center gap-2"
 						>
 							<span>CPF</span>
-							<Input data-invalid={errors.cpf?.message && true} type="text" {...register('cpf')} />
+							<Input
+								data-invalid={errors.cpf?.message && true}
+								type="text"
+								placeholder="999.999.999-99"
+								{...registerCPF('cpf', 'cpf')}
+							/>
 							{errors.cpf?.message && (
 								<p className="text-sm text-destructive">{errors.cpf?.message}</p>
 							)}
@@ -133,8 +136,8 @@ export default function ClientForm({ id, value }: { id: string; value: number })
 											</div>
 											<p>Valor: R$ {(field.value * value).toFixed(2)}</p>
 										</article>
-										{errors.address?.message && (
-											<p className="text-sm text-destructive">{errors.address?.message}</p>
+										{errors.quantity?.message && (
+											<p className="text-sm text-destructive">{errors.quantity?.message}</p>
 										)}
 									</div>
 								)}
@@ -147,6 +150,6 @@ export default function ClientForm({ id, value }: { id: string; value: number })
 					</Button>
 				</div>
 			</form>
-		</div>
+		</section>
 	)
 }

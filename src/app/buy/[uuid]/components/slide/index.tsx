@@ -1,6 +1,5 @@
-import { Button } from '@/components/ui/button'
 import { TListProduct } from '@/validators/product'
-import { ArrowLeft, Lock } from 'lucide-react'
+import { Lock } from 'lucide-react'
 
 export default function Slide({ product }: { product: TListProduct }) {
 	return (
