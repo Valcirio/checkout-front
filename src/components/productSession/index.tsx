@@ -28,7 +28,7 @@ export default function ProductSession({ data }: { data: TListProduct[] }) {
 								<Button
 									variant="default"
 									className="w-full rounded-xl bg-primary px-6 py-3 font-semibold"
-									onClick={(e) => {
+									onClick={() => {
 										router.push(`/buy/${id}`)
 									}}
 								>

@@ -4,8 +4,11 @@ import axios from 'axios'
 import { AlterForm } from './components/alterForm'
 import BuyProvider from '@/context/buyContext'
 import Slide from './components/slide'
+import { TParams } from '@/types/params'
 
-export default async function ProductPage({ params }: { params: Promise<{ uuid: string }> }) {
+export const dynamic = 'force-dynamic'
+
+export default async function ProductPage({ params }: { params: TParams }) {
 	const { uuid } = await params
 	try {
 		const result = await instance.get(`/product/${uuid}`)

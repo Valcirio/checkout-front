@@ -1,10 +1,13 @@
 import OrderSession from '@/components/orderSession'
 import instance from '@/services/axios'
 import getCookieData from '@/services/cookie'
+import { TParams } from '@/types/params'
 import { TRequestOrderSession } from '@/validators/order'
 import axios from 'axios'
 
-export default async function UpdateProductPage({ params }: { params: Promise<{ uuid: string }> }) {
+export const dynamic = 'force-dynamic'
+
+export default async function UpdateProductPage({ params }: { params: TParams }) {
 	try {
 		const cookieData = await getCookieData()
 		const { uuid } = await params

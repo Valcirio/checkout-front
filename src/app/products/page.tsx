@@ -2,7 +2,7 @@ import ProductSession from '@/components/productSession'
 import instance from '@/services/axios'
 import axios from 'axios'
 
-export default async function PageHome() {
+export default async function PageProduct() {
 	try {
 		const result = await instance.get('/product')
 		return (
