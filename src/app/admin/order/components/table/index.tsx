@@ -76,9 +76,7 @@ export default function TableOrder({ data, filters }: TTableOrderProps) {
 					return (
 						<TableRow key={id}>
 							<TableCell className="font-medium">{client.name}</TableCell>
-							<TableCell className="text-right">
-								<TooltipProvider>{StripeStatus(status, 'text-sm')}</TooltipProvider>
-							</TableCell>
+							<TableCell className="text-right">{StripeStatus(status, 'text-sm')}</TableCell>
 							<TableCell>{utcToDate(createdAt)}</TableCell>
 							<TableCell>
 								<div className="flex flex-col items-start justify-center">

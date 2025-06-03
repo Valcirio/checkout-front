@@ -1,12 +1,18 @@
 import { cn } from '@/lib/utils'
-import { TRecorusesAdmin } from '@/types/header'
+import { TRecoruses } from '@/types/header'
 import React from 'react'
 
-export const ContainerLink = ({ recourses }: { recourses: TRecorusesAdmin[] }) => {
-	return recourses.map(({ item, handleClick, short: Short }, id) => {
+export function ContainerLink<T>({ recourses }: { recourses: TRecoruses<T>[] }) {
+	return recourses.map(({ item, handleClick, url, short: Short }, id) => {
 		return (
 			<div
-				onClick={handleClick}
+				onClick={
+					typeof handleClick === 'function'
+						? url
+							? () => handleClick(url)
+							: () => handleClick()
+						: undefined
+				}
 				key={id}
 				className={cn(
 					'flex h-10 w-full items-center justify-between rounded-md px-2 text-base transition-colors',

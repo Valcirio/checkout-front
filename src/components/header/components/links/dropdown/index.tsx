@@ -7,23 +7,34 @@ import {
 	DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import React from 'react'
-import { TRecorusesAdmin } from '@/types/header'
+import { TRecoruses } from '@/types/header'
 import { Button } from '@/components/ui/button'
 
-type TDropdownProps = { children: React.ReactElement; resources: TRecorusesAdmin[] }
+type TDropdownProps<T> = { children: React.ReactElement; resources: TRecoruses<T>[] }
 
-export const DropdownLinks = ({ children, resources }: TDropdownProps) => {
+export function DropdownLinks<T>({ children, resources }: TDropdownProps<T>) {
 	return (
 		<DropdownMenu>
 			<DropdownMenuTrigger asChild>{children}</DropdownMenuTrigger>
 			<DropdownMenuContent className="hidden w-40 sm:block" align="start">
 				<DropdownMenuLabel>Recursos</DropdownMenuLabel>
-				{resources.map(({ title, short: Short, item, handleClick }, id) => {
+				{resources.map(({ title, short: Short, item, handleClick, url }, id) => {
 					return (
-						<DropdownMenuItem key={id} title={title} className={item.color}>
+						<DropdownMenuItem
+							key={id}
+							title={title}
+							className={item.color}
+							onClick={
+								typeof handleClick === 'function'
+									? url
+										? () => handleClick(url)
+										: () => handleClick()
+									: undefined
+							}
+						>
 							{item.content}
 							<DropdownMenuShortcut>
-								<Button onClick={handleClick} variant="ghost" size="icon" className={item.color}>
+								<Button variant="ghost" size="icon" className={item.color}>
 									<Short />
 								</Button>
 							</DropdownMenuShortcut>
