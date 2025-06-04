@@ -1,4 +1,4 @@
-import ProductUpdateForm from '@/components/productUpdateForm'
+import ProductUpdateSession from '@/components/productUpdateSession'
 import instance from '@/services/axios'
 import getCookieData from '@/services/cookie'
 import { TRequestProduct } from '@/validators/product'
@@ -13,7 +13,7 @@ export default async function UpdateProductPage({ params }: { params: Promise<{ 
 			{ headers: { Authorization: `Bearer ${cookieData}` } }
 		)
 
-		return <ProductUpdateForm product={data.product} />
+		return <ProductUpdateSession product={data.product} />
 	} catch (err) {
 		if (axios.isAxiosError(err)) {
 			throw new Error(`Erro ${err.status}`)

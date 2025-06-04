@@ -14,7 +14,7 @@ import { BuyContext } from '@/context/buyContext'
 import { STATUS_CODE } from '@/types/httpStatus'
 import { useHookFormMask } from 'use-mask-input'
 
-export default function ClientForm({ id, value }: { id: string; value: number }) {
+export default function ClientForm({ id, value, qtd }: { id: string; value: number; qtd: number }) {
 	const { CreateOrder } = useContext(BuyContext)
 	const {
 		register,
@@ -36,7 +36,7 @@ export default function ClientForm({ id, value }: { id: string; value: number })
 				toast.success('Registro feito!')
 			}
 		} catch {
-			toast.error('Nome ou Senha do usuário inválido.')
+			toast.error('Erro ao registrar.')
 		}
 	}
 	return (
@@ -126,7 +126,7 @@ export default function ClientForm({ id, value }: { id: string; value: number })
 													{field.value}
 												</span>
 												<button
-													disabled={field.value >= 5}
+													disabled={field.value >= 5 || field.value >= qtd}
 													type="button"
 													onClick={() => field.onChange(field.value + 1)}
 													className="flex h-10 w-full rounded-r-md border border-input bg-background px-1 py-2 text-base ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[invalid=true]:ring-destructive md:text-sm"

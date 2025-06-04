@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 export const Footer = () => {
 	return (
 		<footer className="border-t border-border/40 bg-secondary/30 py-8">
@@ -6,12 +8,12 @@ export const Footer = () => {
 					&copy; {new Date().getFullYear()} MeuEcommerce. Todos os direitos reservados.
 				</p>
 				<div className="mt-4 flex gap-4 md:mt-0">
-					<a href="/terms" className="text-sm text-muted-foreground hover:text-primary">
+					<Link href="/terms" className="text-sm text-muted-foreground hover:text-primary">
 						Termos de Serviço
-					</a>
-					<a href="/privacy" className="text-sm text-muted-foreground hover:text-primary">
+					</Link>
+					<Link href="/privacy" className="text-sm text-muted-foreground hover:text-primary">
 						Política de Privacidade
-					</a>
+					</Link>
 				</div>
 			</div>
 		</footer>

@@ -26,10 +26,11 @@ export default function DeleteDialog({ id, open, setOpen }: TDeleteDialogProps) 
 					Authorization: `Bearer ${getCookie('access-token')}`,
 				},
 			})
-			if (result.data.status === STATUS_CODE.OK) {
+			if (result.status === STATUS_CODE.OK) {
 				setTimeout(() => {
 					toast.success('Produto deletado com sucesso!')
 					router.refresh()
+					setOpen(!open)
 				}, 1000)
 			}
 		} catch {

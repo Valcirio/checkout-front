@@ -41,15 +41,13 @@ export default function TableProducts({ data, filters }: TTableProductProps) {
 	const [dialogOpen, setDialogOpen] = useState<boolean>(false)
 	const [currentId, setCurrentId] = useState<string>('')
 
-	function handleClick(e: React.MouseEvent<HTMLDivElement>) {
-		if (e.currentTarget.title === 'apagar') {
-			setCurrentId(e.currentTarget.id)
-			setDialogOpen(true)
-		}
+	function handleDeleteClick(e: React.MouseEvent<HTMLDivElement>) {
+		setCurrentId(e.currentTarget.id)
+		setDialogOpen(true)
+	}
 
-		if (e.currentTarget.title === 'visualizar') {
-			router.push(`${path}/${e.currentTarget.id}`)
-		}
+	function handleViewClick(e: React.MouseEvent<HTMLDivElement>) {
+		router.push(`${path}/${e.currentTarget.id}`)
 	}
 
 	return (
@@ -111,7 +109,7 @@ export default function TableProducts({ data, filters }: TTableProductProps) {
 										</DropdownMenuTrigger>
 										<DropdownMenuContent className="w-40" align="start">
 											<DropdownMenuLabel>{title}</DropdownMenuLabel>
-											<DropdownMenuItem id={reqId} title="visualizar" onClick={handleClick}>
+											<DropdownMenuItem id={reqId} title="visualizar" onClick={handleViewClick}>
 												Visualizar
 												<DropdownMenuShortcut>
 													<Button size="icon" variant="tertiary">
@@ -119,7 +117,7 @@ export default function TableProducts({ data, filters }: TTableProductProps) {
 													</Button>
 												</DropdownMenuShortcut>
 											</DropdownMenuItem>
-											<DropdownMenuItem id={reqId} title="apagar" onClick={handleClick}>
+											<DropdownMenuItem id={reqId} title="apagar" onClick={handleDeleteClick}>
 												Apagar
 												<DropdownMenuShortcut>
 													<Button size="icon" variant="destructive">

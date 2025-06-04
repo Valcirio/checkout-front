@@ -2,13 +2,14 @@
 import { TRequestOrderSession } from '@/validators/order'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card'
 import Link from 'next/link'
-import { SquareArrowOutUpRight } from 'lucide-react'
+import { CircleX, SquareArrowOutUpRight } from 'lucide-react'
 import { utcToDateTime } from '@/utils/utcToDate'
 import { StripeStatus } from '@/utils/statusTableOrder'
 import { Separator } from '../ui/separator'
+import { Button } from '../ui/button'
 
 export default function OrderSession({
-	data: { client, product, ...props },
+	data: { client, ...props },
 }: {
 	data: TRequestOrderSession
 }) {
@@ -16,25 +17,33 @@ export default function OrderSession({
 		<section className="flex w-full flex-col items-center justify-start gap-6 px-4 pt-24">
 			<Card className="flex w-full max-w-2xl flex-row overflow-hidden rounded-2xl bg-gradient-to-t from-primary/10 to-background/10 shadow-xl">
 				<CardHeader className="p-4">
-					<img
-						src={product.picture}
-						alt={product.title}
-						className="boder-input h-auto w-full max-w-36 rounded-md border object-cover sm:max-w-60"
-					/>
+					{props.productId ? (
+						<img
+							src={props.picture}
+							alt={props.title}
+							className="boder-input h-auto w-full max-w-36 rounded-md border object-cover sm:max-w-60"
+						/>
+					) : (
+						<Button variant="destructive" className="text-sm sm:text-lg">
+							Produto encerrado <CircleX />
+						</Button>
+					)}
 				</CardHeader>
 				<CardContent className="flex flex-grow flex-row p-2 sm:p-5">
 					<div>
 						<CardTitle className="text-xl font-semibold text-foreground sm:text-3xl">
-							{product.title}
+							{props.title}
 						</CardTitle>
-						<p className="text-lg font-bold text-primary sm:text-2xl">R${product.price}</p>
+						<p className="text-lg font-bold text-primary sm:text-2xl">R${props.price}</p>
 
-						<Link
-							className="mt-2 flex items-center gap-1 self-start text-sm font-medium text-primary sm:text-xl"
-							href={`/admin/products/${props.productId}`}
-						>
-							ver produto <SquareArrowOutUpRight className="h-4 w-4 sm:h-6 sm:w-6" />
-						</Link>
+						{!!props.productId && (
+							<Link
+								className="mt-2 flex items-center gap-1 self-start text-sm font-medium text-primary sm:text-xl"
+								href={`/admin/products/${props.productId}`}
+							>
+								ver produto <SquareArrowOutUpRight className="h-4 w-4 sm:h-6 sm:w-6" />
+							</Link>
+						)}
 					</div>
 				</CardContent>
 			</Card>
@@ -54,7 +63,7 @@ export default function OrderSession({
 					</div>
 					<Separator />
 					<div className="flex items-center justify-between">
-						<p className="text-base font-bold text-primary sm:text-2xl">Valor: R${product.price}</p>
+						<p className="text-base font-bold text-primary sm:text-2xl">Valor: R${props.value}</p>
 						<label>
 							<span className="text-sm sm:text-lg">Data da Compra:</span>
 							<CardDescription className="text-sm sm:text-lg">

@@ -1,7 +1,5 @@
+/* eslint-disable @next/next/no-html-link-for-pages */
 'use client'
-
-import { Button } from '@/components/ui/button'
-import { Link } from 'lucide-react'
 
 export default function GlobalError({ error }: { error: Error & { digest?: string } }) {
 	return (
@@ -20,9 +18,9 @@ export default function GlobalError({ error }: { error: Error & { digest?: strin
 							<a href="#" className="text-sm font-semibold text-primary">
 								Suporte <span aria-hidden="true">&rarr;</span>
 							</a>
-							<Button asChild>
-								<Link href="/">Página inicial</Link>
-							</Button>
+							<a href="/" className="rounded-md bg-primary px-2 py-2 text-primary-foreground">
+								Página inicial
+							</a>
 						</div>
 					</div>
 				</main>

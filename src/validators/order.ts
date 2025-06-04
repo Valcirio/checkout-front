@@ -13,17 +13,20 @@ export type TRequestOrder = {
 	id: string
 	client: { name: string }
 	createdAt: string
-	product: { title: string; price: string }
+	title: string
+	price: string
 	status: string
 }
 
 export type TRequestOrderSession = {
 	client: { name: string; email: string; method: string | null }
-	product: { title: string; price: number; picture: string }
 
 	status: string
 	value: number
 	clientId: string
-	productId: string
+	title: string
+	price: number
+	picture: string
+	productId: string | null
 	createdAt: string
 }

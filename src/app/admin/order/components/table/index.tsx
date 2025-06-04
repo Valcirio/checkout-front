@@ -14,7 +14,6 @@ import * as Filter from '../../../components/filters'
 
 import { TRequestOrder } from '@/validators/order'
 import { StripeStatus } from '@/utils/statusTableOrder'
-import { TooltipProvider } from '@/components/ui/tooltip'
 import { EOrderSelect } from '@/types/table'
 import { SelectItem } from '@/components/ui/select'
 import { Eye } from 'lucide-react'
@@ -72,7 +71,7 @@ export default function TableOrder({ data, filters }: TTableOrderProps) {
 						</TableCell>
 					</TableRow>
 				)}
-				{data.map(({ client, product, status, createdAt, id: reqId }, id) => {
+				{data.map(({ client, price, title, status, createdAt, id: reqId }, id) => {
 					return (
 						<TableRow key={id}>
 							<TableCell className="font-medium">{client.name}</TableCell>
@@ -80,8 +79,8 @@ export default function TableOrder({ data, filters }: TTableOrderProps) {
 							<TableCell>{utcToDate(createdAt)}</TableCell>
 							<TableCell>
 								<div className="flex flex-col items-start justify-center">
-									<a>{product.title}</a>
-									<a>{product.price}</a>
+									<a>{title}</a>
+									<a>{price}</a>
 								</div>
 							</TableCell>
 							<TableCell>

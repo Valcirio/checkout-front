@@ -22,7 +22,7 @@ interface ProductUpdateFormProps {
 	product: TRequestProduct
 }
 
-export default function ProductUpdateForm({ product }: ProductUpdateFormProps) {
+export default function ProductUpdateSession({ product }: ProductUpdateFormProps) {
 	const router = useRouter()
 	const {
 		register,

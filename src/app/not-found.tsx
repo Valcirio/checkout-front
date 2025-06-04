@@ -2,8 +2,6 @@
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 
-const PUBLIC_LINKS = ['login', 'register', 'products']
-
 export default function NotFound() {
 	return (
 		<main className="grid min-h-screen place-items-center bg-background px-6 py-24 sm:py-32 lg:px-8">
