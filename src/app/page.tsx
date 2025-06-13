@@ -42,7 +42,7 @@ export default function LandingPage() {
 							</div>
 						</div>
 						<img
-							src="https://placehold.co/600x500/e2e8f0/334155?text=Imagem+Hero"
+							src="https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?q=80&w=2076&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
 							width="600"
 							height="500"
 							alt="Hero Image"
@@ -139,7 +139,7 @@ export default function LandingPage() {
 					</div>
 					<div className="flex justify-center">
 						<img
-							src="https://placehold.co/550x450/e2e8f0/334155?text=Sobre+Nós"
+							src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
 							width="550"
 							height="450"
 							alt="About Us Image"
